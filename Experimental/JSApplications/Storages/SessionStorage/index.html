@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sessionStorage Demo</title>
+    <script src="sessionStorage.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .found {
+            color: green;
+        }
+
+        body > div[id*="set"] {
+            border: 3px dotted red;
+            width: 20%;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        body > div[id*="set"] a {
+            text-decoration: none;
+            background: lightgray;
+            font-family: Arial;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px;
+            display: inline-block;
+            padding: 3px;
+            border: 4px groove darkgray;
+            text-transform: uppercase;
+        }
+
+        body > div[id*="set"] a:active {
+            border: 4px ridge darkred;
+            color: yellow;
+        }
+
+        body #container:before {
+            content: 'Results:';
+            font-size: 20px;
+            font-family: Consolas;
+            display: inline-block;
+            clear: both;
+            padding: 3px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="set-add">
+    <label for="setKey">Set key:</label><input id="setKey" type="text"/><br/>
+    <label for="setValue">Set value:</label><input id="setValue" type="text"/><br/>
+    <a href="#" onclick="inputPair()">Submit</a>
+</div>
+
+<div id="set-remove">
+    <label for="removeKey">Remove key:</label><input id="removeKey" type="text"/><br/>
+    <a href="#" onclick="removeValueByKey()">Remove</a>
+</div>
+
+<div id="set-search">
+    <label for="searchKey">Search key:</label><input id="searchKey" type="text"/><br/>
+    <a href="#" onclick="searchValueByKey()">Search</a>
+</div>
+
+<div id="set-clear">
+    <a href="#" onclick="clearSessionStorage()">ClearStorage</a>
+</div>
+<div id="container"></div>
+<script>
+    //storage.loadPairs();
+
+    function inputPair() {
+        var key = document.getElementById('setKey').value,
+                value = document.getElementById('setValue').value;
+        if (/\s+/g.test(key) || /\s+/g.test(value) || key === '' || value === '') {
+            document.getElementById('container').innerHTML = '<p class="storage-item error"> Some invalid Arguments passed!</p>';
+            return;
+        }
+
+        sessionStorage.setItem(key, value);
+        storage.loadPairs();
+    }
+
+    function removeValueByKey() {
+        var key = document.getElementById('removeKey').value;
+
+        if (/\s+/g.test(key) || key === '') {
+            document.getElementById('container').innerHTML = '<p class="storage-item error"> Search key cannot be empty or include spaces</p>';
+            return;
+        }
+
+        if (!sessionStorage.getItem(key)) {
+            document.getElementById('container').innerHTML = '<p class="storage-item error"> This key doesn\'t exits. Nothing Changed!</p>';
+            return
+        }
+
+        sessionStorage.removeItem(key);
+        storage.loadPairs();
+    }
+
+    function searchValueByKey() {
+        var div = document.getElementById('container'),
+                key = document.getElementById('searchKey').value;
+
+        if (/\s+/g.test(key) || key === '') {
+            div.innerHTML = '<p class="storage-item error"> Search key cannot be empty or include spaces</p>';
+            return;
+        }
+
+        div.innerHTML = '<p class="storage-item found"> <strong class="storage-key">' +
+        key + '</strong> : <em class="storage-value">"' + sessionStorage.getItem(key) + '"</em></p>';
+    }
+
+    function clearSessionStorage() {
+        sessionStorage.clear();
+        storage.loadPairs();
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Films</title>
+    <style>
+        header {
+            background-color: #228B22;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        footer {
+            background-color: #e6c3c7;
+            font-family: Tahoma;
+            font-size: 15px;
+            display: block;
+            height: 50px;
+            position: absolute;
+            width: 99%;
+        }
+
+        main {
+            margin: 5px;
+        }
+
+        main #results {
+            margin-top: 5px;
+            width: 40%;
+            border: 1px dashed red;
+        }
+
+        main #results ul {
+            list-style-type: decimal;
+        }
+
+        main #results ul li h3.film-title {
+            /*text-decoration: underline;*/
+            display: inline-block;
+            border-bottom: 2px inset orange;
+        }
+
+        em:before {
+            clear: both;
+            display: block;
+            content: '';
+        }
+
+        main #results ul li p.description {
+            text-align: justify;
+            padding-right: 15px;;
+        }
+
+        footer ul {
+            display: inline-block;
+            list-style-type: none;
+            float: right;
+            margin-right: 5%;
+        }
+
+        footer ul li {
+            float: left;
+            margin: auto 10px;
+        }
+
+        footer ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        footer ul li a:hover {
+            text-decoration: underline;
+            color: #33ccef;
+            text-shadow: white 2px 2px 2px;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<header>
+    <h2>Wellcome</h2>
+</header>
+    <main>
+        <label for="films">Type:</label>
+        <input id="films" type="text" maxlength="30" title="search"/>
+        <input  id="get-data" type="button" value="Search" />
+        <div id="results"></div>
+    </main>
+<footer>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Map site</a></li>
+        <li><a href="#">Contacts</a></li>
+        <li><a href="#">About us</a></li>
+    </ul>
+</footer>
+<script src="ajax.js"></script>
+</body>
+</html>
