@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutorial</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+        body {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Welcome to button clicks tutorial</h2>
+<p>Click the button to generate clicks.</p>
+<button id="btn-main" class="btn btn-primary">Clicked times: <span class="badge"></span></button>
+
+<script>
+    // when DOM is ready(loaded)
+    /*
+    $(document).ready(function () {
+        var clickedTimes = 0;
+
+        $('.badge').html(clickedTimes);
+
+        $('body').on('click', '#btn-main', function () {
+            clickedTimes += 1;
+            $('.badge').html(clickedTimes);
+        })
+    })*/
+    var clickedTimes = 0;
+
+    // selecting the span element
+    var span = document.getElementsByClassName('badge')[0];
+    span.innerText = clickedTimes;
+    var domElement = document.getElementById('btn-main');
+    domElement.addEventListener('click', function(e) {
+        var clickedButton = e.target;
+        clickedTimes += 1;
+        span.innerText = clickedTimes;
+    })
+
+
+</script>
+</body>
+</html>

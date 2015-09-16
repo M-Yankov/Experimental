@@ -1,0 +1,10 @@
+<h3>All registered users </h3>
+{{#if users}}
+    <ul>
+    {{# users}}
+        <li><a href="#/users">{{username}}</a> <span>{{id}}</span></li>
+    {{/users}}
+    </ul>
+{{else}}
+    <h4>No users</h4>
+{{/if}}

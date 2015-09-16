@@ -1,0 +1,12 @@
+{{#todos}}
+   <h3>{{categoryName}}</h3>
+    {{#each items}}
+        {{#if state}}
+        <div>{{text}} </div> <input type="checkbox" checked/>
+        {{else}}
+            <div>{{text}} </div> <input type="checkbox" />
+        {{/if}}
+    {{/each}}
+{{/todos}}
+<hr />
+<a href="#/todos/add" class="btn btn-primary" id="btn-add-todo">Add ToDo</a>

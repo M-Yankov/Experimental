@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exam preparation</title>
+    <link rel="icon" type="image/png" href="https://cdn4.iconfinder.com/data/icons/24x24-free-pixel-icons/24/Home.png"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css"/>
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/overcast/jquery-ui.css">
+    <link rel="stylesheet" href="bower_components/jt.timepicker/jquery.timepicker.css"/>
+    <style>
+    .ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+        background-color: #0070a3;
+    }
+    /* IE 6 doesn't support max-height
+    * we use height instead, but this forces the menu to always be this tall
+    */
+    * html .ui-autocomplete {
+    height: 100px;
+    }
+    </style>
+</head>
+<body class="">
+<div class="container">
+    <header>
+
+        <div>
+            <nav class="">
+                <div class="" id="logged-as"></div>
+                <button class="btn btn-primary text-right media-right top-right" id="btn-logout">LOGOUT</button>
+
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation"><a href="#/home">HOME</a></li>
+                    <li role="presentation"><a href="#/login-register">Login Register</a></li>
+                    <li role="presentation"><a href="#/users">Users</a></li>
+                    <li role="presentation"><a href="#/todos">Todos</a></li>
+                    <li role="presentation"><a href="#/events">Events</a></li>
+                    <li role="presentation"><a href="#/home">SomethingEles</a></li>
+                    <li role="presentation"><a href="#/home">Another</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content" class=" jumbotron"></div>
+</div>
+
+<!-- libs -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/sammy/lib/sammy.js"></script>
+<script src="bower_components/handlebars/handlebars.js"></script>
+<script src="bower_components/sha1/index.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/toastr/toastr.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="bower_components/jt.timepicker/jquery.timepicker.js"></script>
+<!-- main -->
+<script src="js/templates.js"></script>
+<script src="js/contolers/userController.js"></script>
+<script src="js/contolers/todoController.js"></script>
+<script src="utils/categories.js"></script>
+<script src="router.js"></script>
+
+
+<script>
+    $(function () {
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        var username = userControler.current();
+        if (username) {
+            $('#logged-as').html('Logged as: <b>' + username + '</b>');
+            $('#btn-logout').show();
+        } else {
+            $('#logged-as').html('').hide();
+            $('#btn-logout')
+                    .hide();
+        }
+
+        $('#btn-logout').on('click', function () {
+            $('#logged-as').html('').hide();
+            $('#btn-logout').hide();
+            userControler.logout();
+            toastr.info('Successful exit ', 'System message');
+            document.location = '#/home';
+//            document.location.reload(true);
+            /*toastr.success('Logout')*/
+        });
+    }());
+</script>
+
+</body>
+</html>

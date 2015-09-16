@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workshop: Simple Forum with Sammy.js, jQuery and Handlebars</title>
+    <link rel="icon" type="image/png" href="https://cdn4.iconfinder.com/data/icons/24x24-free-pixel-icons/24/Home.png"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css"/>
+</head>
+<body class="">
+<div class="container">
+    <header>
+
+        <div>
+            <nav class="">
+                 <div class="" id="logged-as"></div>
+
+                <button class="btn btn-primary text-right media-right top-right" id="btn-logout">LOGOUT</button>
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation"><a href="#/home">HOME</a></li>
+                    <li role="presentation"><a href="#/login">Login Register</a></li>
+                    <li role="presentation"><a href="#/users">Users</a></li>
+                    <li role="presentation"><a href="#/threads">Threads</a></li>
+                    <li role="presentation"><a href="#/threads/add">Add Thread</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content" class=" jumbotron"></div>
+</div>
+
+<!-- libs -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/sammy/lib/sammy.js"></script>
+<script src="bower_components/handlebars/handlebars.js"></script>
+<script src="bower_components/sha1/index.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/toastr/toastr.js"></script>
+
+<!-- main -->
+<script src="js/templates.js"></script>
+<script src="js/data.js"></script>
+<script src="routes.js"></script>
+
+
+<script>
+    $(function () {
+
+        var username = data.users.current();
+        if (username) {
+            $('#logged-as').html('Logged as: ' + username.username);
+            $('#btn-logout').show();
+        } else {
+            $('#logged-as').html('');
+            $('#btn-logout')
+                    .hide();
+        }
+
+        $('#btn-logout').on('click', function () {
+            $('#logged-as').html('');
+            $('#btn-logout').hide();
+            data.users.logout();
+            toastr.info('Successful exit', 'System sign out')
+            document.location = '#/home';
+//            document.location.reload(true);
+            /*toastr.success('Logout')*/
+        });
+    }());
+</script>
+
+</body>
+</html>

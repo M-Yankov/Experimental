@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Background color changer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        button:last-child {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h3>Welcome to background color changer tutorial</h3>
+
+<p>Click on the buttons to change background color</p>
+
+<div class="btn-group" id="container" role="group" aria-label="...">
+    <button id="btn-red" class="btn btn-default red" data-color="red">Red</button>
+    <button id="btn-yellow" class="btn btn-default yellow" data-color="yellow">Yellow</button>
+    <button id="btn-green" class="btn btn-default green" data-color="green">Green</button>
+    <button id="btn-blue" class="btn btn-default blue" data-color="blue">Blue</button>
+    <button id="btn-black" class="btn btn-default black" data-color="black">Black</button>
+</div>
+
+<script>
+    var body = document.getElementsByTagName('body')[0];
+
+    body.addEventListener('click', function (e) {
+        var element = e.target;
+        if (element.nodeName === 'BUTTON') {
+            var color = element.getAttribute('data-color');
+            switch (color) {
+                case 'red':
+                    body.className = 'red';
+                    break;
+                case 'yellow':
+                    body.className = 'yellow';
+                    break;
+                case 'green':
+                    body.className = 'green';
+                    break;
+                case 'blue':
+                    body.className = 'blue';
+                    break;
+                case 'black':
+                    body.className = 'black';
+                    break;
+                default:
+            }
+        }
+    }, false);
+
+    /*
+    // if we use standard inline styles
+    body.addEventListener('click', function (e) {
+        var element = e.target;
+        if (element.nodeName === 'BUTTON') {
+            var color = element.getAttribute('data-color');
+            body.style.backgroundColor = color;
+        }
+    }, false);
+*/
+
+
+    /*$('#container').on('click', '.btn-default', function () {
+     var colorHexValue = $(this).attr('data-color');
+     $('body').css('background-color', colorHexValue);
+     })*/
+</script>
+</body>
+</html>

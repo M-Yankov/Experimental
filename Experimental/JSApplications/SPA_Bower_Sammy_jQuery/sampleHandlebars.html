@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+</head>
+<body>
+<script id="entry-template" type="text/x-handlebars-template">
+    <ul>
+        <li class="generated-from-handlebars">
+            {{#each items}}
+            <a href="#/items/{{@index}} "> {{this.name}} </a> <br/>
+            {{/each}}
+        </li>
+    </ul>
+</script>
+
+<script>
+    var data = {};
+    data.items= [{
+        id: 'Pesho',
+        name: 'Otlichnik'
+    }, {
+        id: 'Ivan',
+        name: 'Gamer'
+    }, {
+        id: 'Pesho',
+        name: 'Stamat'
+    }, {
+        id: 'Title',
+        name: 'InnerText'
+    }];
+
+    /*var source,template, html;
+    $.ajax({
+        url: 'templates/items.handlebars',
+        method: 'GET',
+        success: function (inncomingHtml) {
+            source = inncomingHtml;
+            template = Handlebars.compile(source);
+            html = template(data.items);
+            $('body').append(html);
+
+        }
+    });*/
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
+    var html = template(data);
+    $('body').append(html);
+</script>
+</body>
+</html>

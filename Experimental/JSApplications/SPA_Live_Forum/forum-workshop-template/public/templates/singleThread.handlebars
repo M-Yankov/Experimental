@@ -1,0 +1,32 @@
+<article>
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+
+    <main>
+        {{#if messages.length}}
+            <ul>
+            {{#each messages}}
+                <li>
+                    <p>
+                        {{this}}
+                    </p>
+                </li>
+            {{/each}}
+            </ul>
+        {{else}}
+            <p>This thread doesn't have any messages. Be the first one!</p>
+        {{/if}}
+
+    </main>
+
+    <footer>
+        <div>{{postDate}}</div>
+        <div>by {{user.username}}</div>
+    </footer>
+</article>
+
+<label for="text-message">Your Message:</label> <br />
+<textarea id="text-message" placeholder="Start here...  " cols="50" rows="5"></textarea>
+ <br />
+<button class="btn btn-success"  id="add-message">Reply</button>

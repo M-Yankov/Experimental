@@ -1,0 +1,14 @@
+<h3>User list</h3>
+{{#if users}}
+    <ul>
+        {{# users}}
+            <li>
+                <a href="#/users">{{username}}</a>
+            </li>
+        {{/users}}
+    </ul>
+{{else}}
+    <p>
+        No users!
+    </p>
+{{/if}}
