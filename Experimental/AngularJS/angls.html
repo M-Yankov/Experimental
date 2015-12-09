@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture 1</title>
+ <script src="js/angular.js"></script>
+</head>
+<body ng-app="myApp" ng-cloak>
+
+    <!-- set the cont roller case sensitive. -->
+    <div ng-controller="HomeController as h">
+        <!--data Binding-->
+        <img ng-src="{{h.image}}"/>
+    </div>
+
+<script>
+//      angular.module('myApp')  // gets the already created module.
+//      must define where module will work with setting attribute
+//      angular.module('myApp',['Other modules', 'Other modules'])
+//      ng - embedded from angular or with '$'
+//      $scope - coming from dependency injection.
+
+        angular.module('myApp',[])
+                .controller('HomeController',
+                [function HomeController() {
+                    var vm = this;
+                    vm.image = 'https://avatars0.githubusercontent.com/u/1455020?v=3&s=200'
+                }]);
+
+    // TODO: Do no this $scope = { hello : '....'}; !!!!
+</script>
+</body>
+</html>
