@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+    <script src="js/angular.js"></script>
+</head>
+<body ng-app="myModule" ng-cloak>
+
+<div ng-controller="homeController as c">
+    <div ng-repeat="note in c.notes">
+        <div>First Element: {{$first}}</div>
+        <div>Middle Element: {{$middle}}</div>
+        <div>Last Element: {{$last}}</div>
+        <div>Index of Element: {{$index}}</div>
+        <div>At Even Position: {{$even}}</div>
+        <div>At Odd Position: {{$odd}}</div>
+        <pre>
+            {{ note | json : 4}}
+        </pre>
+    </div>
+
+    <!--<p ng-style=""></p>-->
+</div>
+
+
+<script>
+    angular.module('myModule', [])
+            .constant('value', 2)
+            .controller('homeController', ['$scope', 'value', function homeController($scope, constVal) {
+                var vm = this;
+                vm.hello = 'Welcome to Angular';
+                vm.isValid = true;
+                vm.magicNumber = constVal;
+                vm.notes = [{
+                    id: 1,
+                    label: 'Java',
+                    Date: new Date(2015, 8, 8)
+                }, {
+                    id: 2,
+                    label: 'JavaScript',
+                    Date: new Date(2015, 9, 24)
+                }, {
+                    id: 3,
+                    label: 'NativeScript',
+                    Date: new Date(2015, 3, 15)
+                }, {
+                    id: 5,
+                    label: 'TypeScript',
+                    Date: new Date(2015, 1, 5)
+                }, {
+                    id: 12,
+                    label: 'CoffeeScript',
+                    Date: new Date(2015, 3, 4)
+                }]
+            }]);
+
+</script>
+</body>
+</html>
